@@ -14,6 +14,17 @@
                         <input type="text" class="login_input">
                         <input type="password" class="login_input">
                         <button class="login_btn">로그인</button>
+                        <div class="find_acc_area">
+                            <div class="remember_me_area">
+                                <input type="checkbox" name="" id="" value="remember_me">
+                                <span class="find_text1">아이디저장</span>
+                            </div>
+                            <div class="find_links">
+                                <nuxt-link to="/findId" class="find_text1">아이디 찾기</nuxt-link>
+                                <nuxt-link to="/findPwd" class="find_text1">비밀번호 찾기</nuxt-link>
+                            </div>
+                        </div>
+                        <img class="naver_login_btn" src="https://s3.ap-northeast-2.amazonaws.com/www.kimscafe.com/etc/btn_loginNaver.jpg" alt="">
                     </ul>
                     <hr class="login_nav_hr2">
                 </ul>

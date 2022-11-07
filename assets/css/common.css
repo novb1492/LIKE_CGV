@@ -154,7 +154,7 @@ a {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
-    height: 8rem;
+    height: 11.5rem;
     justify-content: space-between;
 }
 .login_top_message{
@@ -170,4 +170,27 @@ a {
     height: 2rem;
     background-color: red;
     border: 0;
+    cursor:pointer;
+
+}
+.find_acc_area{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+}
+.find_text1{
+    font-size: 0.5rem;
+}
+.find_links{
+    display: flex;
+}
+.remember_me_area{
+    display: flex;
+    align-items: center;
+}
+.naver_login_btn{
+    width: 12.5rem;
+    cursor:pointer;
+
 }
