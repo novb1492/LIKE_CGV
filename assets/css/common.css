@@ -1,0 +1,43 @@
+.common{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+body{
+    margin: 0;
+}
+.top_banner{
+    background-color: aquamarine;
+}
+.nav_icon{
+    width: 7rem;
+}
+.main_nav{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+}
+.main_nav_content{
+    list-style:none;
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+}
+.main_nav_content_auth{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main_nav_content_text{
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+.main_nav_hr{
+    position: relative;
+    width: 100%;
+}
+.main_nav_content_icon{
+    padding-left: 2rem;
+}

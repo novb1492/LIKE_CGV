@@ -10,11 +10,6 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 import reservationNavVue from './reservationNav.vue';
 export default {
     components: { mainNav,reservationNavVue },
-    watch: {
-        "num"(){
-          console.log('a');
-        }
-    },
     computed: {
         ...mapGetters( "navBar",{
             num:"getNum"
