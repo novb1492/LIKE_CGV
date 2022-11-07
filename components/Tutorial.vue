@@ -1,6 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-   <button @click="cookietest">cookietest</button>
+   <button @click="cookietest" hidden>cookietest</button>
   
 </template>
 
