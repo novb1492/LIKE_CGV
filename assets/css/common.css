@@ -41,3 +41,20 @@ body{
 .main_nav_content_icon{
     padding-left: 2rem;
 }
+.sub_nav_content{
+    list-style:none;
+    display: flex;
+    padding-left: 0;
+    justify-content: space-between;
+}
+.sub_nav_content_1{
+    list-style:none;
+    display: flex;
+    padding-left: 0;
+}
+.sub_nav_content_1_text{
+    padding-left: 2rem;
+}
+.sub_nav_content_2_text{
+    padding-left: 0.5rem;
+}

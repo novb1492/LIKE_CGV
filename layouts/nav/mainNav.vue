@@ -23,11 +23,14 @@
             </ul>
         </nav>
         <hr class="main_nav_hr">
+        <subNavVue/>
     </header>
 </template>
 <script>
+import subNavVue from './subNav.vue';
 export default {
-    
+    components: { subNavVue },
+
 }
 </script>
 <style lang="">
