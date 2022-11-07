@@ -5,6 +5,10 @@
 body{
     margin: 0;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
 .top_banner{
     background-color: aquamarine;
 }
@@ -28,6 +32,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor:pointer;
 }
 .main_nav_content_text{
     font-size: 0.8rem;
@@ -84,4 +89,85 @@ body{
     height:35vh;
     margin-left: 3rem;
     margin-right: 1rem;
+}
+.login_area{
+    margin-top: 2rem;
+    width: 100%;
+}
+.login_area_content{
+    list-style:none;
+    display: flex;
+    padding-left: 0;
+    width: 100%;
+
+}
+.login_content{
+    list-style:none;
+    display: flex;
+    padding-left: 0;
+    flex-direction: column;
+    width: 50%;
+}
+.login_select_btn_f{
+ margin-left: 1rem;
+}
+.login_select_btn{
+    width: 7rem;
+    height: 2rem;
+    font-size: 0.7rem;
+    padding: 0;
+    border: 0;
+    margin-right: 0.1rem;
+    cursor:pointer;
+
+}
+.login_btns{
+    display: flex;
+    width: 80%;
+}
+.login_nav_hr1{
+    width: 90%;
+    text-align:left;
+    margin: 0;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+}
+.login_nav_hr2{
+    width: 90%;
+    text-align:left;
+    margin: 0;
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+.phone_login_banner{
+    width: 20rem;
+    
+}
+.login_content_box{
+    list-style:none;
+    display: flex;
+    padding: 0;
+    width: 60%;
+}
+.login_main_area{
+    list-style:none;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    height: 8rem;
+    justify-content: space-between;
+}
+.login_top_message{
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+}
+.login_input{
+    width: 12rem;
+    height: 1.5rem;
+}
+.login_btn{
+    width: 12.5rem;
+    height: 2rem;
+    background-color: red;
+    border: 0;
 }
