@@ -203,7 +203,7 @@ a {
 .ticket_page_btns{
     display: flex;
     justify-content: flex-end;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 .ticket_content_area{
     display: flex;
@@ -326,9 +326,45 @@ a {
     flex-direction: column;
     margin-left: 0.5rem;
     font-size: 0.8rem;
+    height: 24.5rem;
+    overflow: auto;
 }
 .city_in_t{
     margin-bottom: 0.7rem;
     cursor:pointer;
 }
+.ticket_content_d{
+    border-left: 0.15rem solid;
+    height: 30rem;
+    width: 5rem;
+    text-align: center;
+}
+.date_area_header{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.year{
+    font-size: 0.9rem;
+}
+.month{
+    font-size: 2rem;
+}
+.date_box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor:pointer;
 
+}
+.dow{
+    margin-left: 1.5rem;
+    font-size: 0.8rem;
+}
+.day{
+    margin-left: 1rem;
+}
+.dow_on{
+    background-color: gray;
+}
