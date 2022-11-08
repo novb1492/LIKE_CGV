@@ -196,3 +196,98 @@ a {
 .login_select_on{
     background-color: red;
 }
+.ticket_page_btn{
+    height: 1.5rem;
+    margin-right: 0.4rem;
+}
+.ticket_page_btns{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2.5rem;
+}
+.ticket_content_area{
+    display: flex;
+    margin-top: 1rem;
+    height: 32rem;
+}
+.ticket_img{
+    width: 8.5rem;
+    height: 17rem;
+}
+.ticket_content{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.ticket_content_l{
+    margin-left: 25%;
+}
+.ticket_content_m{
+    border-left: 0.15rem solid;
+    height: 30rem;
+    width: 15rem;
+    text-align: center;
+}
+.ticket_content_t{
+    margin: 0;
+    background-color: gray;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+}
+.ticket_m_content{
+    display: flex;
+    flex-direction: column;
+    background-color: burlywood;
+    height: 28.25rem;
+    
+
+}
+.ticket_m_btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.ticket_m_btn{
+    border: 0.1rem solid;
+}
+.ticket_m_btn_t{
+    font-size: 0.7rem;
+    padding: 0.5rem;
+}
+.ticket_m_btn_on{
+    border-bottom: 0;
+}
+.m_sort{
+    margin-top: 0.5rem;
+    display: flex;
+}
+.m_sort_t{
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+}
+.m_sort_t_f{
+    margin-left: 1.5rem;
+}
+.m_sort_hr{
+    text-align: left;
+    margin-left: 1rem;
+    width: 12.7rem;
+}
+.ticket_m_n_area{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.ticket_m_n{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    cursor:pointer;
+}
+.move_n{
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+.ticket_m_n_on{
+    background-color: black;
+}

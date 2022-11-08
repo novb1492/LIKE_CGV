@@ -5,7 +5,9 @@
                 <ul class="sub_nav_content_1" @mouseover="showSubDetail">
                     <li>영화</li>
                     <li class="sub_nav_content_1_text">극장</li>
-                    <li class="sub_nav_content_1_text">예매</li>
+                    <li class="sub_nav_content_1_text">
+                        <nuxt-link to="/ticketPage">예매</nuxt-link>
+                    </li>
                     <li class="sub_nav_content_1_text">스토어</li>
                     <li class="sub_nav_content_1_text">이벤트</li>
                     <li class="sub_nav_content_1_text">혜택</li>
@@ -55,10 +57,14 @@
                 <li>
                     <ul class="sub_nav_detail_content">
                         <li>
-                            <h4 class="sub_nav_detail_h4">예매</h4>
+                            <h4 class="sub_nav_detail_h4">
+                                <nuxt-link to="/ticketPage">예매</nuxt-link>
+                            </h4>
                         </li>
                         <li class="sub_nav_detail_text">
-                            빠른예매
+                            <nuxt-link to="/ticketPage">
+                                빠른예매
+                            </nuxt-link>
                         </li>
                         <li class="sub_nav_detail_text">
                             상영스케줄
