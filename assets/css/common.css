@@ -329,5 +329,6 @@ a {
 }
 .city_in_t{
     margin-bottom: 0.7rem;
+    cursor:pointer;
 }
 
