@@ -4,17 +4,11 @@
             <ul class="login_content_box">
                 <ul class="login_content">
                     <li class="login_btns">
-                        <nuxt-link to="/loginPage?select=login">
-                            <button class="login_select_btn login_select_btn_f" ref="login_btn">로그인</button>
-                        </nuxt-link>
-                        <nuxt-link to="/loginPage?select=anonymous">
-                            <button class="login_select_btn" ref="anonymous_btn">비회원 예매</button>
-                        </nuxt-link>
-                        <nuxt-link to="/loginPage?select=anonymousCheck">
-                            <button class="login_select_btn" ref=anonymousCheck_btn>비회원 예매확인</button>
-                        </nuxt-link>
+                            <button class="login_select_btn login_select_btn_f" ref="login_btn" @click="changeContent(1)">로그인</button>
+                            <button class="login_select_btn" ref="anonymous_btn" @click="changeContent(2)">비회원 예매</button>
+                            <button class="login_select_btn" ref=anonymousCheck_btn @click="changeContent(3)">비회원 예매확인</button>
                     </li>
-                    <div id="login" ref="login" hidden>
+                    <div id="login" v-if="num===1">
                         <hr class="login_nav_hr1">
                         <ul class="login_main_area"  >
                             <li class="login_top_message">아이디 비밀번호를 입력하신 후,로그인 버튼을 클릭해주세요.</li>
@@ -35,12 +29,12 @@
                         </ul>
                         <hr class="login_nav_hr2">
                     </div>
-                    <div id="anonymous" ref="anonymous" hidden>
+                    <div id="anonymous" v-if="num===2">
                         <hr class="login_nav_hr1">
                         anonymous
                         미구현
                     </div>
-                    <div id="anonymousCheck" ref="anonymousCheck" hidden>
+                    <div id="anonymousCheck" v-if="num===3">
                         <hr class="login_nav_hr1">
                         anonymousCheck
                         미구현
@@ -55,61 +49,45 @@
 import { mapMutations } from "vuex";
 
 export default {
-    watch: {
-        "$route"() {
-            this.changeContent();
-        },
+    data() {
+        return {
+            num: 1,
+        }
     },
     mounted() {
         this.changeNav(1);
-        this.changeContent();
+        this.changeContent(this.num);
     },
     methods: {
         ...mapMutations("navBar", {
             changeNav: "changeNav",
         }),
-        changeContent() {
-            let select = this.$route.query.select;
-            if (select === 'login') {
-                this.changeLoginContent(true);
-                this.changeAnonymousContent(false);
-                this.changeAnonymousCheckContent(false);
-            } else if (select === 'anonymous') {
-                this.changeLoginContent(false);
-                this.changeAnonymousContent(true);
-                this.changeAnonymousCheckContent(false);
-            } else if (select === 'anonymousCheck') {
-                this.changeLoginContent(false);
-                this.changeAnonymousContent(false);
-                this.changeAnonymousCheckContent(true);
+        changeContent(num) {
+            if (num === 1) {
+                this.changeLoginContent();
+            } else if (num === 2) {
+                this.changeAnonymousContent();
+            } else if (num === 3) {
+                this.changeAnonymousCheckContent();
             }
         },
-        changeLoginContent(flag) {
-            if (flag) {
-                this.$refs.login_btn.classList.add('login_select_on');
-                this.$refs.login.hidden = false;
-                return;
-            }
-            this.$refs.login_btn.classList.remove('login_select_on');
-            this.$refs.login.hidden = true;
-        },
-        changeAnonymousContent(flag) {
-            if (flag) {
-                this.$refs.anonymous_btn.classList.add('login_select_on');
-                this.$refs.anonymous.hidden = false;
-                return;
-            }
-            this.$refs.anonymous_btn.classList.remove('login_select_on');
-            this.$refs.anonymous.hidden = true;
-        },
-        changeAnonymousCheckContent(flag) {
-            if (flag) {
-                this.$refs.anonymousCheck_btn.classList.add('login_select_on');
-                this.$refs.anonymousCheck.hidden = false;
-                return;
-            }
+        changeLoginContent() {
+            this.num=1;
             this.$refs.anonymousCheck_btn.classList.remove('login_select_on');
-            this.$refs.anonymousCheck.hidden = true;
+            this.$refs.anonymous_btn.classList.remove('login_select_on');
+            this.$refs.login_btn.classList.add('login_select_on');
+        },
+        changeAnonymousContent() {
+            this.num=2;
+            this.$refs.anonymousCheck_btn.classList.remove('login_select_on');
+            this.$refs.login_btn.classList.remove('login_select_on');
+            this.$refs.anonymous_btn.classList.add('login_select_on');
+        },
+        changeAnonymousCheckContent() {
+            this.num=3;
+            this.$refs.login_btn.classList.remove('login_select_on');
+            this.$refs.anonymous_btn.classList.remove('login_select_on');
+            this.$refs.anonymousCheck_btn.classList.add('login_select_on');
         }
     }
 }

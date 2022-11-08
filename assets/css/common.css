@@ -215,6 +215,7 @@ a {
     height: 17rem;
 }
 .ticket_content{
+    display: flex;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
@@ -236,7 +237,7 @@ a {
 .ticket_m_content{
     display: flex;
     flex-direction: column;
-    background-color: burlywood;
+    background-color: white;
     height: 28.25rem;
     
 
@@ -247,14 +248,18 @@ a {
     margin-top: 1rem;
 }
 .ticket_m_btn{
+    background-color: white;
     border: 0.1rem solid;
+    height: 1.5rem;
+    cursor:pointer;
+
 }
 .ticket_m_btn_t{
-    font-size: 0.7rem;
-    padding: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.5rem;
 }
 .ticket_m_btn_on{
-    border-bottom: 0;
+    border-bottom: none;
 }
 .m_sort{
     margin-top: 0.5rem;
@@ -289,5 +294,6 @@ a {
     margin-left: 0.5rem;
 }
 .ticket_m_n_on{
-    background-color: black;
+    background-color: gray;
+    margin-right: 1.2rem;
 }

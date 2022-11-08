@@ -18,8 +18,41 @@
                     <h4 class="ticket_content_t">영화</h4>
                     <div class="ticket_m_content">
                         <div class="ticket_m_btns">
-                            <button class="ticket_m_btn">
+                            <button class="ticket_m_btn ticket_m_btn_on" @click="changeCate(1)"ref="all_btn">
                                 <span class="ticket_m_btn_t">전체</span>
+                            </button>
+                            <button class="ticket_m_btn" @click="changeCate(2)" ref="art_house_btn">
+                                <span class="ticket_m_btn_t">아트하우스</span>
+                            </button>
+                            <button class="ticket_m_btn" @click="changeCate(3)" ref="special_btn">
+                                <span class="ticket_m_btn_t" >특별관</span>
+                            </button>
+                        </div>
+                        <div class="m_sort">
+                            <span class="m_sort_t m_sort_t_f">예매율순</span>
+                            <span class="m_sort_t">가나다순</span>
+                        </div>
+                        <hr class="m_sort_hr">
+                        <div class="ticket_m_n_area" v-if="num===1">
+                            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index)" :id="move.id" :ref="setItemRef">
+                                <button>{{move.age}}</button>
+                                <span class="move_n">{{move.name}}</span>
+                            </div>
+                        </div>
+                        <div class="art_house" v-if="num===2">
+                            art_house 미구현
+                        </div>
+                        <div class="special"  v-if="num===3">
+                            special 미구현
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket_content_m">
+                    <h4 class="ticket_content_t">극장</h4>
+                    <div class="ticket_m_content">
+                        <div class="ticket_m_btns">
+                            <button class="ticket_m_btn ticket_m_btn_on">
+                                <span class="ticket_m_btn_t ">전체</span>
                             </button>
                             <button class="ticket_m_btn">
                                 <span class="ticket_m_btn_t">아트하우스</span>
@@ -28,16 +61,8 @@
                                 <span class="ticket_m_btn_t">특별관</span>
                             </button>
                         </div>
-                        <div class="m_sort">
-                            <span class="m_sort_t m_sort_t_f">예매율순</span>
-                            <span class="m_sort_t">가나다순</span>
-                        </div>
-                        <hr class="m_sort_hr">
-                        <div class="ticket_m_n_area">
-                            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index)" :id="move.id" :ref="setItemRef">
-                                <button>{{move.age}}</button>
-                                <span class="move_n">{{move.name}}</span>
-                            </div>
+                        <div class="location_area">
+
                         </div>
                     </div>
                 </div>
@@ -52,7 +77,7 @@ import { mapMutations } from 'vuex';
 export default {
     asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
         let moveArr=[{name:'블랙팬서',id:'1',age:12,advance_rate:1},{name:'자백',id:'2',age:15,advance_rate:3},{name:'리멤버',id:'3',age:12,advance_rate:2}];
-        
+        let theaterArr=[{name:'서울'}];
         // let moveArr=[{name:'블랙팬서',id:'1',age:12,advance_rate:1
         //     ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'강변',id:'2'},{name:'건대',id:'3'}]}
         //     ,{loc:'경기',id:'2',count:54,locDe:[{name:'고양행신',id:'4'},{name:'파주',id:'5'},{name:'김포한강',id:'6'}]}
@@ -71,23 +96,41 @@ export default {
     },
     data() {
         return {
-            moveRef:[]
+            moveRef:[],
+            clickIndex:null,
+            num:1
         }
     },
     mounted() {
         this.changeNav(1);
         console.log(this.moveArr);
-
+        this.beforeContentRef=this.$refs.all;
     },
     methods: {
         ...mapMutations("navBar", {
             changeNav: "changeNav",
         }),
         clickMove(index){
-            console.log(this.moveRef[index]);
+            if(this.clickIndex===null){
+                this.moveRef[index].classList.add('ticket_m_n_on');
+                this.clickIndex=index;
+                return;
+            }
+            this.moveRef[this.clickIndex].classList.remove('ticket_m_n_on');
+            this.moveRef[index].classList.add('ticket_m_n_on');
+            this.clickIndex=index;
         },
         setItemRef(move){
             this.moveRef.push(move);
+        },
+        changeCate(cate){
+            if(cate===1){
+                this.num=1;
+            }else if(cate===2){
+                this.num=2;
+            }else if(cate===3){
+                this.num=3;
+            }
         }
     }
 }
