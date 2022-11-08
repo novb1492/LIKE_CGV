@@ -4,10 +4,10 @@
         <nav class="main_nav common">
             <img src="https://s3.ap-northeast-2.amazonaws.com/www.kimscafe.com/etc/logo.png" alt="사이트 로고" class="nav_icon">
             <ul class="main_nav_content">
-                <li class="main_nav_content_auth">
+                <nuxt-link to="/loginPage?select=login" class="main_nav_content_auth">
                     <i class="fa-solid fa-lock fa-lg main_nav_content_icon"></i>
                     <span class="main_nav_content_text">로그인</span>
-                </li>
+                </nuxt-link>
                 <li class="main_nav_content_auth">
                     <i class="fa-regular fa-user fa-lg main_nav_content_icon"></i>
                     <span class="main_nav_content_text">회원가입</span>
@@ -29,7 +29,7 @@
 <script>
 import subNavVue from './subNav.vue';
 export default {
-    components: { subNavVue },
+    components: { subNavVue }
 
 }
 </script>
