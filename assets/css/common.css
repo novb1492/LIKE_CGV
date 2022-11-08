@@ -368,3 +368,9 @@ a {
 .dow_on{
     background-color: gray;
 }
+.ticket_content_t_area{
+    width: 20rem;
+    border-left: 0.15rem solid;
+    height: 30rem;
+    text-align: center;
+}

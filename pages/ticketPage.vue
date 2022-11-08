@@ -99,6 +99,16 @@
                         </div>
                     </div>
                 </div>
+                <!--시간영역-->
+                <div class="ticket_content_t_area">
+                    <h4 class="ticket_content_t">시간</h4>
+                    <div class="ticket_content_time_head">
+                       
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
             </div>
             <img class="ticket_img" src="https://s3.ap-northeast-2.amazonaws.com/www.kimscafe.com/etc/ticket_banner.jpg"
                 alt="" srcset="">
