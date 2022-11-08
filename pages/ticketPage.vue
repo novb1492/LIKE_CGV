@@ -51,20 +51,22 @@ import { mapMutations } from 'vuex';
 
 export default {
     asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-        let moveArr=[{name:'블랙팬서',id:'1',age:12,advance_rate:1
-            ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'강변',id:'2'},{name:'건대',id:'3'}]}
-            ,{loc:'경기',id:'2',count:54,locDe:[{name:'고양행신',id:'4'},{name:'파주',id:'5'},{name:'김포한강',id:'6'}]}
-            ]
-        }
-        ,{name:'자백',id:'2',age:15,advance_rate:3
-            ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'구로',id:'7'},{name:'건대',id:'3'}]}
-            ,{loc:'경기',id:'2',count:54,locDe:[{name:'고양행신',id:'4'},{name:'일산',id:'8'},{name:'김포한강',id:'6'}]}
-            ]
-        },{name:'리멤버',id:'3',age:12,advance_rate:2
-            ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'대학로',id:'9'},{name:'동대문',id:'10'}]}
-            ,{loc:'경기',id:'2',count:53,locDe:[{name:'김포',id:'11'},{name:'다산',id:'12'},{name:'김포한강',id:'6'}]}
-            ]
-        }]
+        let moveArr=[{name:'블랙팬서',id:'1',age:12,advance_rate:1},{name:'자백',id:'2',age:15,advance_rate:3},{name:'리멤버',id:'3',age:12,advance_rate:2}];
+        
+        // let moveArr=[{name:'블랙팬서',id:'1',age:12,advance_rate:1
+        //     ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'강변',id:'2'},{name:'건대',id:'3'}]}
+        //     ,{loc:'경기',id:'2',count:54,locDe:[{name:'고양행신',id:'4'},{name:'파주',id:'5'},{name:'김포한강',id:'6'}]}
+        //     ]
+        // }
+        // ,{name:'자백',id:'2',age:15,advance_rate:3
+        //     ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'구로',id:'7'},{name:'건대',id:'3'}]}
+        //     ,{loc:'경기',id:'2',count:54,locDe:[{name:'고양행신',id:'4'},{name:'일산',id:'8'},{name:'김포한강',id:'6'}]}
+        //     ]
+        // },{name:'리멤버',id:'3',age:12,advance_rate:2
+        //     ,theater:[{loc:'서울',id:'1',count:31,locDe:[{name:'강남',id:'1'},{name:'대학로',id:'9'},{name:'동대문',id:'10'}]}
+        //     ,{loc:'경기',id:'2',count:53,locDe:[{name:'김포',id:'11'},{name:'다산',id:'12'},{name:'김포한강',id:'6'}]}
+        //     ]
+        // }]
         return {moveArr:moveArr};
     },
     data() {
