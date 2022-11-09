@@ -21,7 +21,7 @@
     </div>
 </template>
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
 
     export default {
         computed: {
@@ -38,19 +38,33 @@
             }
         },
         methods: {
+            /**
+             * 영화 클릭시 호출 api 및 css 효과 변경
+             * @param {int} index 
+             */
             clickMove(index) {
                 if (this.clickIndex === null) {
                     this.moveRef[index].classList.add('ticket_m_n_on');
                     this.clickIndex = index;
+                    this.selectMove(null);
                     return;
                 }
                 this.moveRef[this.clickIndex].classList.remove('ticket_m_n_on');
                 this.moveRef[index].classList.add('ticket_m_n_on');
-                this.clickIndex = index;
+                this.clickIndex = index; 
+                //해당 영화 상영관,날짜 들고오는 action에서 api호출해야함
+                this.selectMove(null);
             },
+            /**
+             * 영화 dom 제어 위해 
+             * @param {el} move 
+             */
             setItemRef(move) {
                 this.moveRef.push(move);
-            }
+            },
+            ...mapActions("ticket", {
+                selectMove: "selectMove"
+            })
         }
     }
 </script>

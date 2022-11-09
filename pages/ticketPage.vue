@@ -27,35 +27,8 @@
                 <div class="ticket_content_m">
                     <h4 class="ticket_content_t">극장</h4>
                     <div class="ticket_m_content">
-                        <div class="ticket_m_btns">
-                            <button class="ticket_m_btn ticket_m_btn_on" @click="changeCate2(1)" ref="all_btn2">
-                                <span class="ticket_m_btn_t ">전체</span>
-                            </button>
-                            <button class="ticket_m_btn" @click="changeCate2(2)" ref="art_house_btn2">
-                                <span class="ticket_m_btn_t">아트하우스</span>
-                            </button>
-                            <button class="ticket_m_btn" @click="changeCate2(3)" ref="special_btn2">
-                                <span class="ticket_m_btn_t">특별관</span>
-                            </button>
-                        </div>
-                        <div class="location_area" ref="all_city" v-if="num2===1">
-                            <div class="city_box">
-                                <span v-for="(theater,index) in theaterArr" :key="theater.id" class="city_t"
-                                    :ref="setTheater"
-                                    @click="changeCity(index)">{{theater.name}}({{theater.count}})</span>
-                            </div>
-                            <div class="city_in">
-                                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t">
-                                    {{location.name}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="location_area" ref="art_house_city" v-if="num2===2">
-                            art_house 미구현
-                        </div>
-                        <div class="location_area" ref="special_city" v-if="num2===3">
-                            special 미구현
-                        </div>
+                        <ticketCateBtnsVue/>
+                        <theaterComponentVue/>
                     </div>
                 </div>
                 <!--날짜 영역-->
@@ -92,6 +65,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 import moveComponentVue from '../components/ticket/moveComponent.vue';
 import ticketCateBtnsVue from '../components/ticket/ticketCateBtns.vue';
+import theaterComponentVue from '../components/ticket/theaterComponent.vue';
 export default {
     asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
         let moveArr = [{ name: '블랙팬서', id: '1', age: 12, advance_rate: 1 }, { name: '자백', id: '2', age: 15, advance_rate: 3 }, { name: '리멤버', id: '3', age: 12, advance_rate: 2 }];
@@ -116,7 +90,7 @@ export default {
         // }]
         return { moveArr: moveArr, theaterArr: theaterArr, dateArr: dateArr };
     },
-    components: { ticketCateBtnsVue,moveComponentVue },
+    components: { ticketCateBtnsVue,moveComponentVue,theaterComponentVue },
     computed: {
         ...mapGetters("ticket", {
             num: "getNum",
@@ -124,10 +98,6 @@ export default {
     },
     data() {
         return {
-            num2: 1,
-            locationArr: [],
-            theaterRef: [],
-            beforeTheaterRefIndex: 0,
             dayArr: [],
             dateRef: [],
             beforeDateRefIndex: null
@@ -136,10 +106,10 @@ export default {
     mounted() {
         this.changeNav(1);
         this.beforeContentRef = this.$refs.all;
-        this.locationArr = this.theaterArr[0].local;
-        this.theaterRef[0].classList.add('city_t_on');
         this.dayArr = this.dateArr.days;
         this.changeMoveArr(this.moveArr);
+        this.changeTheaterArr(this.theaterArr);
+        this.changeLocationArr(this.theaterArr[0].local);
     },
     methods: {
         selectDate(day, index) {
@@ -155,20 +125,13 @@ export default {
         setDateRef(el) {
             this.dateRef.push(el);
         },
-        changeCity(index) {
-            this.locationArr = this.theaterArr[index].local;
-            this.theaterRef[this.beforeTheaterRefIndex].classList.remove('city_t_on');
-            this.theaterRef[index].classList.add('city_t_on');
-            this.beforeTheaterRefIndex = index;
-        },
-        setTheater(el) {
-            this.theaterRef.push(el);
-        },
         ...mapMutations("navBar", {
             changeNav: "changeNav",
         }),
         ...mapMutations("ticket", {
             changeMoveArr: "changeMoveArr",
+            changeTheaterArr:"changeTheaterArr",
+            changeLocationArr:"changeLocationArr"
         }),
         allOn(all_btn, art_house_btn, special_btn) {
             all_btn.classList.add('ticket_m_btn_on');
