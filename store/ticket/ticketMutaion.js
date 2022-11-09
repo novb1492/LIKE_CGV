@@ -19,5 +19,8 @@ export default {
     },
     changeMoveId(state,moveId){
         state.moveId=moveId;
+    },
+    changeDayArr(state,dayArr){
+        state.dayArr=dayArr;
     }
 }

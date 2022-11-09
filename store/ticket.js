@@ -7,7 +7,9 @@ export const state = () => ({
     num2:1,
     locationArr:[],
     locationId:0,
-    moveId:0
+    moveId:0,
+    dayArr:[],
+
 }); 
     
 export const mutations = ticketMutations;
@@ -33,5 +35,8 @@ export const getters = {
   },
   getLocationId:(state)=>{
     return state.locationId;
-  }
+  },
+  getDayArr:(state)=>{
+    return state.dayArr;
+  },
 }

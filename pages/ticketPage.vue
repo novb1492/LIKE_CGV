@@ -32,29 +32,9 @@
                     </div>
                 </div>
                 <!--날짜 영역-->
-                <div class="ticket_content_d">
-                    <h4 class="ticket_content_t">날짜</h4>
-                    <div class="date_area_header">
-                        <div class="year">{{dateArr.year}}</div>
-                        <div class="month">{{dateArr.month}}</div>
-                    </div>
-                    <div class="date_area" >
-                        <div v-for="(day, index) in dayArr" :key="day.date" class="date_box" @click="selectDate(day,index)" :ref="setDateRef">
-                            <span class="dow">{{day.dow}}</span>
-                            <span class="day">{{day.date}}</span>
-                        </div>
-                    </div>
-                </div>
+                <dateComponentVue/>
                 <!--시간영역-->
-                <div class="ticket_content_t_area">
-                    <h4 class="ticket_content_t">시간</h4>
-                    <div class="ticket_content_time_head">
-                       
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
+                <timeComponentVue/>
             </div>
             <img class="ticket_img" src="https://s3.ap-northeast-2.amazonaws.com/www.kimscafe.com/etc/ticket_banner.jpg"
                 alt="" srcset="">
@@ -66,6 +46,8 @@ import { mapGetters, mapMutations } from 'vuex';
 import moveComponentVue from '../components/ticket/moveComponent.vue';
 import ticketCateBtnsVue from '../components/ticket/ticketCateBtns.vue';
 import theaterComponentVue from '../components/ticket/theaterComponent.vue';
+import dateComponentVue from '../components/ticket/dateComponent.vue';
+import timeComponentVue from '../components/ticket/timeComponent.vue';
 export default {
     asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
         let moveArr = [{ name: '블랙팬서', id: 1, age: 12, advance_rate: 1 }, { name: '자백', id: 2, age: 15, advance_rate: 3 }, { name: '리멤버', id: 3, age: 12, advance_rate: 2 }];
@@ -90,48 +72,40 @@ export default {
         // }]
         return { moveArr: moveArr, theaterArr: theaterArr, dateArr: dateArr };
     },
-    components: { ticketCateBtnsVue,moveComponentVue,theaterComponentVue },
+    components: { ticketCateBtnsVue, moveComponentVue, theaterComponentVue, dateComponentVue,timeComponentVue },
     computed: {
         ...mapGetters("ticket", {
             num: "getNum",
         })
     },
-    data() {
+    head() {
         return {
-            dayArr: [],
-            dateRef: [],
-            beforeDateRefIndex: null
+            title: "예매 | 영화 그 이상의 강동.CGV",
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.',
+                },
+            ],
         }
     },
     mounted() {
         this.changeNav(1);
-        this.beforeContentRef = this.$refs.all;
-        this.dayArr = this.dateArr.days;
         this.changeMoveArr(this.moveArr);
         this.changeTheaterArr(this.theaterArr);
         this.changeLocationArr(this.theaterArr[0].local);
+        this.changeDayArr(this.dateArr);
     },
     methods: {
-        selectDate(day, index) {
-            if (this.beforeDateRefIndex === null) {
-                this.dateRef[index].classList.add('dow_on');
-                this.beforeDateRefIndex = index;
-                return;
-            }
-            this.dateRef[this.beforeDateRefIndex].classList.remove('dow_on');
-            this.dateRef[index].classList.add('dow_on');
-            this.beforeDateRefIndex = index;
-        },
-        setDateRef(el) {
-            this.dateRef.push(el);
-        },
         ...mapMutations("navBar", {
             changeNav: "changeNav",
         }),
         ...mapMutations("ticket", {
             changeMoveArr: "changeMoveArr",
-            changeTheaterArr:"changeTheaterArr",
-            changeLocationArr:"changeLocationArr"
+            changeTheaterArr: "changeTheaterArr",
+            changeLocationArr: "changeLocationArr",
+            changeDayArr: "changeDayArr"
         })
     }
 }
