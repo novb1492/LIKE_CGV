@@ -6,7 +6,7 @@
         </div>
         <hr class="m_sort_hr">
         <div class="ticket_m_n_area" v-if="num===1">
-            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index)"
+            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index,move.id)"
                 :id="move.id" :ref="setItemRef">
                 <button>{{move.age}}</button>
                 <span class="move_n">{{move.name}}</span>
@@ -27,14 +27,14 @@
         computed: {
             ...mapGetters("ticket", {
                 num: "getNum",
-                moveArr: "getMoveArr"
+                moveArr: "getMoveArr",
+                locationId:"getLocationId"
             })
         },
         data() {
             return {
                 moveRef: [],
                 clickIndex: null
-
             }
         },
         methods: {
@@ -42,18 +42,27 @@
              * 영화 클릭시 호출 api 및 css 효과 변경
              * @param {int} index 
              */
-            clickMove(index) {
+            clickMove(index,moveId) {
                 if (this.clickIndex === null) {
                     this.moveRef[index].classList.add('ticket_m_n_on');
                     this.clickIndex = index;
-                    this.selectMove(null);
+                    this.callSelectAction(moveId);
                     return;
                 }
                 this.moveRef[this.clickIndex].classList.remove('ticket_m_n_on');
                 this.moveRef[index].classList.add('ticket_m_n_on');
                 this.clickIndex = index; 
                 //해당 영화 상영관,날짜 들고오는 action에서 api호출해야함
-                this.selectMove(null);
+                this.callSelectAction(moveId);
+            },
+            /**
+             * 조회 action 호출
+             */
+            callSelectAction(moveId){
+                let data=new Object;
+                data.locationId=this.locationId;
+                data.moveId=moveId;
+                this.selectMove(data);
             },
             /**
              * 영화 dom 제어 위해 

@@ -16,8 +16,8 @@ export default {
         //     //영화만 선택했을때
         //     //가능 상영관 날짜 조회
         // }
-        context.commit('changeMoveId',1);
-        context.commit('changeTheaterArr',[]);
+        console.log(data);
+        context.commit('changeMoveId',data.moveId);
     },
     /**
      * 상영관 클릭시 api호출 및 상영관 id저장
@@ -36,7 +36,7 @@ export default {
         //     //영화,날짜 모두 선택되어있다면
         //     //해당 날짜 상영시간표 조회
         // }
-        context.commit('changeLocationId',2);
-        context.commit('changeTheaterArr',[]);
+        console.log(data);
+        context.commit('changeLocationId',data.locationId);
     }
 }

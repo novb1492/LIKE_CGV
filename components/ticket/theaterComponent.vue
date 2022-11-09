@@ -70,7 +70,11 @@ export default {
          * @param {int} locationId 
          */
         selectLo(locationId){
-            this.selectLocation(null);
+            let data=new Object;
+            data.locationId=locationId;
+            data.moveId=this.moveId;
+
+            this.selectLocation(data);
         }
     }
 }
