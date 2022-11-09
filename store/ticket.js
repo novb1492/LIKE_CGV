@@ -9,6 +9,9 @@ export const state = () => ({
     locationId:0,
     moveId:0,
     dayArr:[],
+    year:null,
+    month:null,
+    date:null
 
 }); 
     
@@ -38,5 +41,8 @@ export const getters = {
   },
   getDayArr:(state)=>{
     return state.dayArr;
+  },
+  getSelectDate:(state)=>{
+    return `${state.year}-${state.month}-${state.date}`;
   },
 }

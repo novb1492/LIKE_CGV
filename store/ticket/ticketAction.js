@@ -25,6 +25,7 @@ export default {
     selectDate(context,data){
         requestSelect(data);
         console.log(data);
+        context.commit('chageSelectDate',data.date);
     },
 }
 /**
@@ -34,6 +35,7 @@ export default {
  */
 async function requestSelect(data) {
     console.log(data);
+    let response=null;
     //영화, 영화 기준 상영 가능 상영관 및 날짜 가져옴
     //극장, 극장 기준 상영 가능 영화 및 날짜 가져옴
     //날짜, 날짜 기준 상영 가능 영화 및 극장 가져옴

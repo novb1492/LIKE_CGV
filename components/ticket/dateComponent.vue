@@ -6,7 +6,7 @@
             <div class="month">{{dateArr.month}}</div>
         </div>
         <div class="date_area">
-            <div v-for="(day, index) in dateArr.days" :key="day.date" class="date_box" @click="selectDate(day,index)"
+            <div v-for="(day, index) in dateArr.days" :key="day.date" class="date_box" @click="select(day,index)"
                 :ref="setDateRef">
                 <span class="dow">{{day.dow}}</span>
                 <span class="day">{{day.date}}</span>
@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -30,12 +30,15 @@
             })
         },
         methods: {
+            ...mapActions("ticket", {
+                selectDate: "selectDate"
+            }),
             /**
              * 날짜 클릭시 작동하는함수
              * @param {int} day 
              * @param {int} index 
              */
-            selectDate(day, index) {
+            select(day, index) {
                 if (this.beforeDateRefIndex === null) {
                     this.dateRef[index].classList.add('dow_on');
                     this.beforeDateRefIndex = index;
@@ -44,6 +47,9 @@
                 this.dateRef[this.beforeDateRefIndex].classList.remove('dow_on');
                 this.dateRef[index].classList.add('dow_on');
                 this.beforeDateRefIndex = index;
+                let data=new Object;
+                data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
+                this.selectDate(data);
             },
             /**
              * 컴포넌트 생성시 dom접근 저장함수

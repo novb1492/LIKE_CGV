@@ -28,7 +28,8 @@
             ...mapGetters("ticket", {
                 num: "getNum",
                 moveArr: "getMoveArr",
-                locationId:"getLocationId"
+                locationId:"getLocationId",
+                date:"getSelectDate"
             })
         },
         data() {
@@ -62,6 +63,7 @@
                 let data=new Object;
                 data.locationId=this.locationId;
                 data.moveId=moveId;
+                data.date=this.date;
                 this.selectMove(data);
             },
             /**

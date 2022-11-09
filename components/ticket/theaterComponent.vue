@@ -34,7 +34,8 @@ export default {
             num2: "getNum2",
             locationArr:"getLocationArr",
             theaterArr:"getTheaterArr",
-            moveId:"getMoveId"
+            moveId:"getMoveId",
+            date:"getSelectDate"
         })
     },
     methods: {
@@ -73,7 +74,7 @@ export default {
             let data=new Object;
             data.locationId=locationId;
             data.moveId=this.moveId;
-
+            data.date=this.date;
             this.selectLocation(data);
         }
     }
