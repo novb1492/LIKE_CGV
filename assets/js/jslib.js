@@ -6,8 +6,10 @@
  * @param {int} locationId 
  * @param {string-string-string} date 
  */
-export function ticketPagechangeRouter(router, moveId, locationId, date) {
-    router.push(`/ticketPage?move=${moveId}&locationId=${locationId}&date=${date}`);
+export function ticketPagechangeRouter(router, moveId, locationId, date,result) {
+    if(result.flag){
+        router.push(`/ticketPage?move=${moveId}&locationId=${locationId}&date=${date}`);
+    }
 }
 /**
  * api 조회후 리렌더링 하는 함수

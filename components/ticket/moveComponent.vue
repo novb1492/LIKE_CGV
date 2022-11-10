@@ -65,8 +65,7 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
                 data.moveId=moveId;
                 data.date=this.date;
                 let result=await this.selectMove(data);
-                console.log(result);
-                ticketPagechangeRouter(this.$router,moveId,this.locationId,this.date);
+                ticketPagechangeRouter(this.$router,moveId,this.locationId,this.date,result);
             },
             /**
              * 영화 dom 제어 위해 

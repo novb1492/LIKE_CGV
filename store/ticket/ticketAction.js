@@ -7,7 +7,7 @@ export default {
     selectMove (context,data) { 
         requestSelect(data);
         context.commit('changeMoveId',data.moveId);
-        return true;
+        return {flag:true};
     },
     /**
      * 상영관 클릭시 api호출 및 상영관 id store에 저장
@@ -17,7 +17,7 @@ export default {
     selectLocation(context,data){
         requestSelect(data);
         context.commit('changeLocationId',data.locationId);
-        return true;
+        return {flag:true};
     },
     /**
      * 날짜 클릭시 api호출 및 클릭한 선택연/월/일 store에 저장
@@ -27,7 +27,7 @@ export default {
     selectDate(context,data){
         requestSelect(data);
         context.commit('chageSelectDate',data.date);
-        return true;
+        return {flag:true};
     },
 }
 /**

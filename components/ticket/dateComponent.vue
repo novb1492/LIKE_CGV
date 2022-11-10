@@ -63,8 +63,7 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
                 data.locationId=this.locationId;
                 data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
                 let result=await this.selectDate(data);
-                console.log(result);
-                ticketPagechangeRouter(this.$router,this.moveId,this.locationId,`${this.dateArr.year}-${this.dateArr.month}-${day.date}`);
+                ticketPagechangeRouter(this.$router,this.moveId,this.locationId,`${this.dateArr.year}-${this.dateArr.month}-${day.date}`,result);
             },
             /**
              * 컴포넌트 생성시 dom접근 저장함수

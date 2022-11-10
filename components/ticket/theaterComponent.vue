@@ -52,7 +52,8 @@ export default {
             this.beforeTheaterRefIndex = index;
             //도시 선택시 선택상영관 및 url 초기화
             this.changeLocationId(0);
-            this.changeRouter(0);
+            let result={flag:true};
+            this.changeRouter(0,result);
         },
         /**
          * 극장 관련 dom제어 위해 ref 세팅 
@@ -102,11 +103,10 @@ export default {
             data.moveId = this.moveId;
             data.date = this.date;
             let result=await this.selectLocation(data);
-            console.log(result);
-            this.changeRouter(locationId);
+            this.changeRouter(locationId,result);
         },
-        changeRouter(locationId){
-            ticketPagechangeRouter(this.$router,this.moveId,locationId,this.date);
+        changeRouter(locationId,result){
+            ticketPagechangeRouter(this.$router,this.moveId,locationId,this.date,result);
         }
     }
 }
