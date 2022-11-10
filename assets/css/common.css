@@ -321,6 +321,9 @@ a {
 .city_t_on{
     background-color: white;
 }
+.city_in_on{
+    background-color: gray;
+}
 .city_in{
     display: flex;
     flex-direction: column;

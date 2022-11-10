@@ -1,12 +1,23 @@
 <template lang="">
-    <div class="ticket_m_btns">
-        <button class="ticket_m_btn ticket_m_btn_on" @click="changeCate(1)" ref="all_btn">
+    <div class="ticket_m_btns" v-if="flag">
+        <button class="ticket_m_btn ticket_m_btn_on" @click="changeCate(arr[0])" ref="all_btn">
             <span class="ticket_m_btn_t">전체</span>
         </button>
-        <button class="ticket_m_btn" @click="changeCate(2)" ref="art_house_btn">
+        <button class="ticket_m_btn" @click="changeCate(arr[1])" ref="art_house_btn">
             <span class="ticket_m_btn_t">아트하우스</span>
         </button>
-        <button class="ticket_m_btn" @click="changeCate(3)" ref="special_btn">
+        <button class="ticket_m_btn" @click="changeCate(arr[2])" ref="special_btn">
+            <span class="ticket_m_btn_t">특별관</span>
+        </button>
+    </div>
+    <div class="ticket_m_btns" v-else>
+        <button class="ticket_m_btn ticket_m_btn_on" @click="changeCate(arr[0])" ref="all_btn2">
+            <span class="ticket_m_btn_t">전체</span>
+        </button>
+        <button class="ticket_m_btn" @click="changeCate(arr[1])" ref="art_house_btn2">
+            <span class="ticket_m_btn_t">아트하우스</span>
+        </button>
+        <button class="ticket_m_btn" @click="changeCate(arr[2])" ref="special_btn2">
             <span class="ticket_m_btn_t">특별관</span>
         </button>
     </div>
@@ -15,9 +26,11 @@
 import { mapMutations } from 'vuex';
 
 export default {
+    props: ["arr", "flag"],
     methods: {
         ...mapMutations("ticket", {
             changeNum: "changeNum",
+            changeNum2:"changeNum2"
         }),
         changeCate(cate) {
             if (cate === 1) {
@@ -29,6 +42,15 @@ export default {
             } else if (cate === 3) {
                 this.changeNum(3);
                 this.specialOn(this.$refs.all_btn, this.$refs.art_house_btn, this.$refs.special_btn);
+            } else if (cate === 4) {
+                this.changeNum2(1);
+                this.allOn(this.$refs.all_btn2, this.$refs.art_house_btn2, this.$refs.special_btn2);
+            } else if (cate === 5) {
+                this.changeNum2(2);
+                this.artHouseOn(this.$refs.all_btn2, this.$refs.art_house_btn2, this.$refs.special_btn2);
+            } else if (cate === 6) {
+                this.changeNum2(3);
+                this.specialOn(this.$refs.all_btn2, this.$refs.art_house_btn2, this.$refs.special_btn2);
             }
         },
         allOn(all_btn, art_house_btn, special_btn) {

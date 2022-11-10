@@ -19,7 +19,7 @@
                 <div class="ticket_content_m">
                     <h4 class="ticket_content_t">영화</h4>
                     <div class="ticket_m_content">
-                        <ticketCateBtnsVue/>
+                        <ticketCateBtnsVue :arr="[1,2,3]" :flag="true"/>
                         <moveComponentVue />
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="ticket_content_m">
                     <h4 class="ticket_content_t">극장</h4>
                     <div class="ticket_m_content">
-                        <ticketCateBtnsVue/>
+                        <ticketCateBtnsVue :arr="[4,5,6]" :flag="false"/>
                         <theaterComponentVue/>
                     </div>
                 </div>

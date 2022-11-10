@@ -6,7 +6,7 @@
                     @click="changeCity(index)">{{theater.name}}({{theater.count}})</span>
             </div>
             <div class="city_in">
-                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id)">
+                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id,index)" :ref="setIncityRef">
                     {{location.name}}
                 </span>
             </div>
@@ -26,16 +26,18 @@ export default {
     data() {
         return {
             theaterRef: [],
-            beforeTheaterRefIndex:0
+            beforeTheaterRefIndex: 0,
+            clickIndex:null,
+            incityRef:[]
         }
     },
     computed: {
         ...mapGetters("ticket", {
             num2: "getNum2",
-            locationArr:"getLocationArr",
-            theaterArr:"getTheaterArr",
-            moveId:"getMoveId",
-            date:"getSelectDate"
+            locationArr: "getLocationArr",
+            theaterArr: "getTheaterArr",
+            moveId: "getMoveId",
+            date: "getSelectDate"
         })
     },
     methods: {
@@ -58,23 +60,44 @@ export default {
             //제일 처음 세팅
             this.theaterRef[0].classList.add('city_t_on');
         },
+        /**
+         * 도시내 상영관 dom제어 위해 ref 세팅
+         * @param {el} el 
+         */
+        setIncityRef(el){
+            this.incityRef.push(el);
+        },
         ...mapMutations("ticket", {
-            changeLocationArr:"changeLocationArr",
-            changeLocationId:"changeLocationId"
+            changeLocationArr: "changeLocationArr",
+            changeLocationId: "changeLocationId"
         }),
-        ...mapActions("ticket",{
-            selectLocation:"selectLocation"
+        ...mapActions("ticket", {
+            selectLocation: "selectLocation"
         }),
         /**
-         * 해당 상영관 상영정보 가져오는 함수
-         * 영화가 선택되어있다면 함께조회
+         * 도시내 사영관 선택시 함수
          * @param {int} locationId 
          */
-        selectLo(locationId){
-            let data=new Object;
-            data.locationId=locationId;
-            data.moveId=this.moveId;
-            data.date=this.date;
+        selectLo(locationId, index) {
+            this.callSelectAction(locationId);
+            if (this.clickIndex === null) {
+                this.incityRef[index].classList.add('city_in_on');
+                this.clickIndex = index;
+                return;
+            }
+            this.incityRef[this.clickIndex].classList.remove('city_in_on');
+            this.incityRef[index].classList.add('city_in_on');
+            this.clickIndex = index;
+        },
+        /**
+         * 조회 action호출
+         * @param {int} locationId 
+         */
+        callSelectAction(locationId) {
+            let data = new Object;
+            data.locationId = locationId;
+            data.moveId = this.moveId;
+            data.date = this.date;
             this.selectLocation(data);
         }
     }
