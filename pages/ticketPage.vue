@@ -48,6 +48,7 @@ import ticketCateBtnsVue from '../components/ticket/ticketCateBtns.vue';
 import theaterComponentVue from '../components/ticket/theaterComponent.vue';
 import dateComponentVue from '../components/ticket/dateComponent.vue';
 import timeComponentVue from '../components/ticket/timeComponent.vue';
+import { setTiketPage } from '../assets/js/jslib';
 export default {
     asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
         let moveArr = [{ name: '블랙팬서', id: 1, age: 12, advance_rate: 1 }, { name: '자백', id: 2, age: 15, advance_rate: 3 }, { name: '리멤버', id: 3, age: 12, advance_rate: 2 }];
@@ -92,10 +93,7 @@ export default {
     },
     mounted() {
         this.changeNav(1);
-        this.changeMoveArr(this.moveArr);
-        this.changeTheaterArr(this.theaterArr);
-        this.changeLocationArr(this.theaterArr[0].local);
-        this.changeDayArr(this.dateArr);
+        setTiketPage(this,this.moveArr,this.theaterArr,this.dateArr);
     },
     methods: {
         ...mapMutations("navBar", {
