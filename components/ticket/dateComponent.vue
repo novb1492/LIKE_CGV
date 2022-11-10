@@ -27,6 +27,8 @@
         computed: {
             ...mapGetters("ticket", {
                 dateArr: "getDayArr",
+                locationId:"getLocationId",
+                moveId:"getMoveId",
             })
         },
         methods: {
@@ -39,6 +41,7 @@
              * @param {int} index 
              */
             select(day, index) {
+                this.selectCallAction(day);
                 if (this.beforeDateRefIndex === null) {
                     this.dateRef[index].classList.add('dow_on');
                     this.beforeDateRefIndex = index;
@@ -47,7 +50,16 @@
                 this.dateRef[this.beforeDateRefIndex].classList.remove('dow_on');
                 this.dateRef[index].classList.add('dow_on');
                 this.beforeDateRefIndex = index;
+                
+            },
+            /**
+             * 날짜 클릭시 acion 호출함수
+             * @param {object} day 
+             */
+            selectCallAction(day){
                 let data=new Object;
+                data.moveId=this.moveId;
+                data.locationId=this.locationId;
                 data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
                 this.selectDate(data);
             },

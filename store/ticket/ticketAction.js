@@ -24,7 +24,6 @@ export default {
      */
     selectDate(context,data){
         requestSelect(data);
-        console.log(data);
         context.commit('chageSelectDate',data.date);
     },
 }

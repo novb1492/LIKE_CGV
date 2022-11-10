@@ -44,17 +44,15 @@
              * @param {int} index 
              */
             clickMove(index,moveId) {
+                this.callSelectAction(moveId);
                 if (this.clickIndex === null) {
                     this.moveRef[index].classList.add('ticket_m_n_on');
                     this.clickIndex = index;
-                    this.callSelectAction(moveId);
                     return;
                 }
                 this.moveRef[this.clickIndex].classList.remove('ticket_m_n_on');
                 this.moveRef[index].classList.add('ticket_m_n_on');
                 this.clickIndex = index; 
-                //해당 영화 상영관,날짜 들고오는 action에서 api호출해야함
-                this.callSelectAction(moveId);
             },
             /**
              * 조회 action 호출

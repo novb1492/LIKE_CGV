@@ -24,9 +24,8 @@ export default {
         state.dayArr=dayArr;
     },
     chageSelectDate(state,selectDate){
-        console.log(selectDate);
         state.year=selectDate.year;
         state.month=selectDate.month;
-        state.date=selectDate.date;
+        state.date=selectDate.day.date;
     }
 }
