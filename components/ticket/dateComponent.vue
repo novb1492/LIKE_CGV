@@ -16,6 +16,7 @@
 </template>
 <script>
     import { mapActions, mapGetters } from 'vuex';
+import { ticketPagechangeRouter } from '../../assets/js/jslib';
 
     export default {
         data() {
@@ -63,7 +64,7 @@
                 data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
                 let result=await this.selectDate(data);
                 console.log(result);
-                this.$router.push(`/ticketPage?move=${this.moveId}&locationId=${this.locationId}&date=${this.dateArr.year}-${this.dateArr.month}-${day.date}`);
+                ticketPagechangeRouter(this.$router,this.moveId,this.locationId,`${this.dateArr.year}-${this.dateArr.month}-${day.date}`);
             },
             /**
              * 컴포넌트 생성시 dom접근 저장함수

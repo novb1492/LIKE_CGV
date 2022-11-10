@@ -21,7 +21,7 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex';
-
+import {ticketPagechangeRouter}from "../../assets/js/jslib";
 export default {
     data() {
         return {
@@ -50,6 +50,9 @@ export default {
             this.theaterRef[this.beforeTheaterRefIndex].classList.remove('city_t_on');
             this.theaterRef[index].classList.add('city_t_on');
             this.beforeTheaterRefIndex = index;
+            //도시 선택시 선택상영관 및 url 초기화
+            this.changeLocationId(0);
+            this.changeRouter(0);
         },
         /**
          * 극장 관련 dom제어 위해 ref 세팅 
@@ -100,7 +103,10 @@ export default {
             data.date = this.date;
             let result=await this.selectLocation(data);
             console.log(result);
-            this.$router.push(`/ticketPage?move=${this.moveId}&locationId=${locationId}&date=${this.date}`);
+            this.changeRouter(locationId);
+        },
+        changeRouter(locationId){
+            ticketPagechangeRouter(this.$router,this.moveId,locationId,this.date);
         }
     }
 }

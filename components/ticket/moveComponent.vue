@@ -23,6 +23,7 @@
 </template>
 <script>
     import { mapActions, mapGetters } from 'vuex';
+import { ticketPagechangeRouter } from '../../assets/js/jslib';
 
     export default {
         computed: {
@@ -65,7 +66,7 @@
                 data.date=this.date;
                 let result=await this.selectMove(data);
                 console.log(result);
-                this.$router.push(`/ticketPage?move=${moveId}&locationId=${this.locationId}&date=${this.date}`);
+                ticketPagechangeRouter(this.$router,moveId,this.locationId,this.date);
             },
             /**
              * 영화 dom 제어 위해 
