@@ -93,12 +93,14 @@ export default {
          * 조회 action호출
          * @param {int} locationId 
          */
-        callSelectAction(locationId) {
+        async callSelectAction(locationId) {
             let data = new Object;
             data.locationId = locationId;
             data.moveId = this.moveId;
             data.date = this.date;
-            this.selectLocation(data);
+            let result=await this.selectLocation(data);
+            console.log(result);
+            this.$router.push(`/ticketPage?move=${this.moveId}&locationId=${locationId}&date=${this.date}`);
         }
     }
 }

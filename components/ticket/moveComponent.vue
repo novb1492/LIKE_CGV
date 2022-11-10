@@ -9,7 +9,8 @@
             <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index,move.id)"
                 :id="move.id" :ref="setItemRef">
                 <button>{{move.age}}</button>
-                <span class="move_n">{{move.name}}</span>
+                <span class="move_n ticket_m_n_on" v-if="move.select">{{move.name}}</span>
+                <span class="move_n " v-else>{{move.name}}</span>
             </div>
         </div>
         <div class="art_house" v-if="num===2">
@@ -57,12 +58,14 @@
             /**
              * 조회 action 호출
              */
-            callSelectAction(moveId){
+            async callSelectAction(moveId){
                 let data=new Object;
                 data.locationId=this.locationId;
                 data.moveId=moveId;
                 data.date=this.date;
-                this.selectMove(data);
+                let result=await this.selectMove(data);
+                console.log(result);
+                this.$router.push(`/ticketPage?move=${moveId}&locationId=${this.locationId}&date=${this.date}`);
             },
             /**
              * 영화 dom 제어 위해 

@@ -56,12 +56,14 @@
              * 날짜 클릭시 acion 호출함수
              * @param {object} day 
              */
-            selectCallAction(day){
+            async selectCallAction(day){
                 let data=new Object;
                 data.moveId=this.moveId;
                 data.locationId=this.locationId;
                 data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
-                this.selectDate(data);
+                let result=await this.selectDate(data);
+                console.log(result);
+                this.$router.push(`/ticketPage?move=${this.moveId}&locationId=${this.locationId}&date=${this.dateArr.year}-${this.dateArr.month}-${day.date}`);
             },
             /**
              * 컴포넌트 생성시 dom접근 저장함수
