@@ -8,7 +8,7 @@
  */
 export function ticketPagechangeRouter(router, moveId, locationId, date,result) {
     if(result.flag){
-        router.push(`/ticketPage?move=${moveId}&locationId=${locationId}&date=${date}`);
+        router.push(`/ticketPage?moveId=${moveId}&locationId=${locationId}&date=${date}`);
     }
 }
 /**
