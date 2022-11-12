@@ -7,7 +7,7 @@
         </div>
         <div class="date_area">
             <div v-for="(day, index) in dateArr.days" :key="day.date" class="date_box" @click="select(day,index)"
-                :ref="setDateRef">
+                ref="dates">
                 <span class="dow">{{day.dow}}</span>
                 <span class="day">{{day.date}}</span>
             </div>
@@ -21,7 +21,6 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
     export default {
         data() {
             return {
-                dateRef: [],
                 beforeDateRefIndex: null
             }
         },
@@ -44,12 +43,12 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
             select(day, index) {
                 this.selectCallAction(day);
                 if (this.beforeDateRefIndex === null) {
-                    this.dateRef[index].classList.add('dow_on');
+                    this.$refs.dates[index].classList.add('dow_on');
                     this.beforeDateRefIndex = index;
                     return;
                 }
-                this.dateRef[this.beforeDateRefIndex].classList.remove('dow_on');
-                this.dateRef[index].classList.add('dow_on');
+                this.$refs.dates[this.beforeDateRefIndex].classList.remove('dow_on');
+                this.$refs.dates[index].classList.add('dow_on');
                 this.beforeDateRefIndex = index;
                 
             },
@@ -64,13 +63,6 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
                 data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
                 let result=await this.selectDate(data);
                 ticketPagechangeRouter(this.$router,this.moveId,this.locationId,`${this.dateArr.year}-${this.dateArr.month}-${day.date}`,result);
-            },
-            /**
-             * 컴포넌트 생성시 dom접근 저장함수
-             * @param {el} el 
-             */
-            setDateRef(el) {
-                this.dateRef.push(el);
             }
         }
     }
