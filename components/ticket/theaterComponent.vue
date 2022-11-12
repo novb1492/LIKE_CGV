@@ -65,8 +65,11 @@ export default {
          * 도시내 사영관 선택시 함수
          * @param {int} locationId 
          */
-        selectLo(locationId, index) {
-            this.callSelectAction(locationId);
+        async selectLo(locationId, index) {
+            let reulst= await this.callSelectAction(locationId);
+            if(!reulst.flag){
+                return;
+            }
             if (this.clickIndex === null) {
                 this.$refs.incitys[index].classList.add('city_in_on');
                 this.clickIndex = index;
@@ -87,6 +90,7 @@ export default {
             data.date = this.date;
             let result=await this.selectLocation(data);
             this.changeRouter(locationId,result);
+            return result;
         },
         changeRouter(locationId,result){
             ticketPagechangeRouter(this.$router,this.moveId,locationId,this.date,result);

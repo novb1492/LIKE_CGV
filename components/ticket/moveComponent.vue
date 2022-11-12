@@ -21,55 +21,59 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { ticketPagechangeRouter } from '../../assets/js/jslib';
 
-    export default {
-        computed: {
-            ...mapGetters("ticket", {
-                num: "getNum",
-                moveArr: "getMoveArr",
-                locationId:"getLocationId",
-                date:"getSelectDate"
-            })
-        },
-        data() {
-            return {
-                clickIndex: null
-            }
-        },
-        methods: {
-            /**
-             * 영화 클릭시 호출 api 및 css 효과 변경
-             * @param {int} index 
-             */
-            clickMove(index,moveId) {
-                this.callSelectAction(moveId);
-                if (this.clickIndex === null) {
-                    this.$refs.moves[index].classList.add('ticket_m_n_on');
-                    this.clickIndex = index;
-                    return;
-                }
-                this.$refs.moves[this.clickIndex].classList.remove('ticket_m_n_on');
-                this.$refs.moves[index].classList.add('ticket_m_n_on');
-                this.clickIndex = index; 
-            },
-            /**
-             * 조회 action 호출
-             */
-            async callSelectAction(moveId){
-                let data=new Object;
-                data.locationId=this.locationId;
-                data.moveId=moveId;
-                data.date=this.date;
-                let result=await this.selectMove(data);
-                ticketPagechangeRouter(this.$router,moveId,this.locationId,this.date,result);
-            },
-            ...mapActions("ticket", {
-                selectMove: "selectMove"
-            })
+export default {
+    computed: {
+        ...mapGetters("ticket", {
+            num: "getNum",
+            moveArr: "getMoveArr",
+            locationId: "getLocationId",
+            date: "getSelectDate"
+        })
+    },
+    data() {
+        return {
+            clickIndex: null
         }
+    },
+    methods: {
+        /**
+         * 영화 클릭시 호출 api 및 css 효과 변경
+         * @param {int} index 
+         */
+        async clickMove(index, moveId) {
+            let reulst = await this.callSelectAction(moveId);
+            if (!reulst.flag) {
+                return;
+            }
+            if (this.clickIndex === null) {
+                this.$refs.moves[index].classList.add('ticket_m_n_on');
+                this.clickIndex = index;
+                return;
+            }
+            this.$refs.moves[this.clickIndex].classList.remove('ticket_m_n_on');
+            this.$refs.moves[index].classList.add('ticket_m_n_on');
+            this.clickIndex = index;
+        },
+        /**
+         * 조회 action 호출
+         */
+        async callSelectAction(moveId) {
+            let data = new Object;
+            data.locationId = this.locationId;
+            data.moveId = moveId;
+            data.date = this.date;
+            let result = await this.selectMove(data);
+            ticketPagechangeRouter(this.$router, moveId, this.locationId, this.date, result);
+            return result;
+        },
+        ...mapActions("ticket", {
+            selectMove: "selectMove"
+        })
     }
+}
 </script>
 <style lang="">
 

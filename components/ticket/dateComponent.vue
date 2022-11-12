@@ -15,57 +15,61 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { ticketPagechangeRouter } from '../../assets/js/jslib';
 
-    export default {
-        data() {
-            return {
-                beforeDateRefIndex: null
+export default {
+    data() {
+        return {
+            beforeDateRefIndex: null
+        }
+    },
+    computed: {
+        ...mapGetters("ticket", {
+            dateArr: "getDayArr",
+            locationId: "getLocationId",
+            moveId: "getMoveId",
+        })
+    },
+    methods: {
+        ...mapActions("ticket", {
+            selectDate: "selectDate"
+        }),
+        /**
+         * 날짜 클릭시 작동하는함수
+         * @param {int} day 
+         * @param {int} index 
+         */
+        async select(day, index) {
+            let reulst = await this.selectCallAction(day);
+            if (!reulst.flag) {
+                return;
             }
-        },
-        computed: {
-            ...mapGetters("ticket", {
-                dateArr: "getDayArr",
-                locationId:"getLocationId",
-                moveId:"getMoveId",
-            })
-        },
-        methods: {
-            ...mapActions("ticket", {
-                selectDate: "selectDate"
-            }),
-            /**
-             * 날짜 클릭시 작동하는함수
-             * @param {int} day 
-             * @param {int} index 
-             */
-            select(day, index) {
-                this.selectCallAction(day);
-                if (this.beforeDateRefIndex === null) {
-                    this.$refs.dates[index].classList.add('dow_on');
-                    this.beforeDateRefIndex = index;
-                    return;
-                }
-                this.$refs.dates[this.beforeDateRefIndex].classList.remove('dow_on');
+            if (this.beforeDateRefIndex === null) {
                 this.$refs.dates[index].classList.add('dow_on');
                 this.beforeDateRefIndex = index;
-                
-            },
-            /**
-             * 날짜 클릭시 acion 호출함수
-             * @param {object} day 
-             */
-            async selectCallAction(day){
-                let data=new Object;
-                data.moveId=this.moveId;
-                data.locationId=this.locationId;
-                data.date={year:this.dateArr.year,month:this.dateArr.month,day:day};
-                let result=await this.selectDate(data);
-                ticketPagechangeRouter(this.$router,this.moveId,this.locationId,`${this.dateArr.year}-${this.dateArr.month}-${day.date}`,result);
+                return;
             }
+            this.$refs.dates[this.beforeDateRefIndex].classList.remove('dow_on');
+            this.$refs.dates[index].classList.add('dow_on');
+            this.beforeDateRefIndex = index;
+
+        },
+        /**
+         * 날짜 클릭시 acion 호출함수
+         * @param {object} day 
+         */
+        async selectCallAction(day) {
+            let data = new Object;
+            data.moveId = this.moveId;
+            data.locationId = this.locationId;
+            data.date = { year: this.dateArr.year, month: this.dateArr.month, day: day };
+            let result = await this.selectDate(data);
+            ticketPagechangeRouter(this.$router, this.moveId, this.locationId, `${this.dateArr.year}-${this.dateArr.month}-${day.date}`, result);
+            return result;
         }
     }
+}
 </script>
 <style lang="">
 
