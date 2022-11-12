@@ -2,8 +2,8 @@
     <div>
         <div class="location_area" ref="all_city" v-if="num2===1">
             <div class="city_box">
-                <span v-for="(theater,index) in theaterArr" ref="theaters" :key="theater.id" class="city_t" @click="changeCity(index)">
-                    {{theater.name}}({{theater.count}})
+                <span v-for="(theater,index) in theaterArr" ref="theaters" :key="theater.id" class="city_t" :class="{city_t_on:theater.select}" @click="changeCity(index)">
+                    <span >{{theater.name}}({{theater.count}})</span>
                 </span>
             </div>
             <div class="city_in">
