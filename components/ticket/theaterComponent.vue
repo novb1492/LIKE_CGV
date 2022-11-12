@@ -2,11 +2,12 @@
     <div>
         <div class="location_area" ref="all_city" v-if="num2===1">
             <div class="city_box">
-                <span v-for="(theater,index) in theaterArr" :key="theater.id" class="city_t" :ref="setTheater"
-                    @click="changeCity(index)">{{theater.name}}({{theater.count}})</span>
+                <span v-for="(theater,index) in theaterArr" ref="theaters" :key="theater.id" class="city_t" @click="changeCity(index)">
+                    {{theater.name}}({{theater.count}})
+                </span>
             </div>
             <div class="city_in">
-                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id,index)" :ref="setIncityRef">
+                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id,index)" ref="incitys">
                     {{location.name}}
                 </span>
             </div>
@@ -25,10 +26,8 @@ import {ticketPagechangeRouter}from "../../assets/js/jslib";
 export default {
     data() {
         return {
-            theaterRef: [],
             beforeTheaterRefIndex: 0,
-            clickIndex:null,
-            incityRef:[]
+            clickIndex:null
         }
     },
     computed: {
@@ -47,29 +46,13 @@ export default {
          */
         changeCity(index) {
             this.changeLocationArr(this.theaterArr[index].local);
-            this.theaterRef[this.beforeTheaterRefIndex].classList.remove('city_t_on');
-            this.theaterRef[index].classList.add('city_t_on');
+            this.$refs.theaters[this.beforeTheaterRefIndex].classList.remove('city_t_on');
+            this.$refs.theaters[index].classList.add('city_t_on');
             this.beforeTheaterRefIndex = index;
             //도시 선택시 선택상영관 및 url 초기화
             this.changeLocationId(0);
             let result={flag:true};
             this.changeRouter(0,result);
-        },
-        /**
-         * 극장 관련 dom제어 위해 ref 세팅 
-         * @param {el} el 
-         */
-        setTheater(el) {
-            this.theaterRef.push(el);
-            //제일 처음 세팅
-            this.theaterRef[0].classList.add('city_t_on');
-        },
-        /**
-         * 도시내 상영관 dom제어 위해 ref 세팅
-         * @param {el} el 
-         */
-        setIncityRef(el){
-            this.incityRef.push(el);
         },
         ...mapMutations("ticket", {
             changeLocationArr: "changeLocationArr",
@@ -85,12 +68,12 @@ export default {
         selectLo(locationId, index) {
             this.callSelectAction(locationId);
             if (this.clickIndex === null) {
-                this.incityRef[index].classList.add('city_in_on');
+                this.$refs.incitys[index].classList.add('city_in_on');
                 this.clickIndex = index;
                 return;
             }
-            this.incityRef[this.clickIndex].classList.remove('city_in_on');
-            this.incityRef[index].classList.add('city_in_on');
+            this.$refs.incitys[this.clickIndex].classList.remove('city_in_on');
+            this.$refs.incitys[index].classList.add('city_in_on');
             this.clickIndex = index;
         },
         /**

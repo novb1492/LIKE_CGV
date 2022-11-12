@@ -7,10 +7,9 @@
         <hr class="m_sort_hr">
         <div class="ticket_m_n_area" v-if="num===1">
             <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index,move.id)"
-                :id="move.id" :ref="setItemRef">
+                :id="move.id" ref="moves">
                 <button>{{move.age}}</button>
-                <span class="move_n ticket_m_n_on" v-if="move.select">{{move.name}}</span>
-                <span class="move_n " v-else>{{move.name}}</span>
+                <span class="move_n">{{move.name}}</span>
             </div>
         </div>
         <div class="art_house" v-if="num===2">
@@ -36,7 +35,6 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
         },
         data() {
             return {
-                moveRef: [],
                 clickIndex: null
             }
         },
@@ -48,12 +46,12 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
             clickMove(index,moveId) {
                 this.callSelectAction(moveId);
                 if (this.clickIndex === null) {
-                    this.moveRef[index].classList.add('ticket_m_n_on');
+                    this.$refs.moves[index].classList.add('ticket_m_n_on');
                     this.clickIndex = index;
                     return;
                 }
-                this.moveRef[this.clickIndex].classList.remove('ticket_m_n_on');
-                this.moveRef[index].classList.add('ticket_m_n_on');
+                this.$refs.moves[this.clickIndex].classList.remove('ticket_m_n_on');
+                this.$refs.moves[index].classList.add('ticket_m_n_on');
                 this.clickIndex = index; 
             },
             /**
@@ -66,13 +64,6 @@ import { ticketPagechangeRouter } from '../../assets/js/jslib';
                 data.date=this.date;
                 let result=await this.selectMove(data);
                 ticketPagechangeRouter(this.$router,moveId,this.locationId,this.date,result);
-            },
-            /**
-             * 영화 dom 제어 위해 
-             * @param {el} move 
-             */
-            setItemRef(move) {
-                this.moveRef.push(move);
             },
             ...mapActions("ticket", {
                 selectMove: "selectMove"
