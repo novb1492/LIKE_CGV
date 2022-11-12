@@ -52,7 +52,7 @@ import { setTiketPage } from '../assets/js/jslib';
 export default {
     asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
         let moveArr = [{ name: '블랙팬서', id: 1, age: 12, advance_rate: 1 ,select:false}, { name: '자백', id: 2, age: 15, advance_rate: 3 ,select:false}, { name: '리멤버', id: 3, age: 12, advance_rate: 2 ,select:false}];
-        let theaterArr = [{ name: '서울', count: 31, id: 1,select:true, local: [{ name: '강남', id: 1 ,select:true,cityId:1}, { name: '강변', id: 2 ,select:false,cityId:1}, { name: '대학로', id: 3 ,select:false,cityId:1}, { name: '구로', id: 4 ,select:false,cityId:1}] }
+        let theaterArr = [{ name: '서울', count: 31, id: 1,select:true, local: [{ name: '강남', id: 1 ,select:false,cityId:1}, { name: '강변', id: 2 ,select:false,cityId:1}, { name: '대학로', id: 3 ,select:false,cityId:1}, { name: '구로', id: 4 ,select:false,cityId:1}] }
             , { name: '경기', count: 54, id: 2 ,select:false, local: [{ name: '일산', id: 5 ,select:false,cityId:2}, { name: '고양', id: 6 ,select:false,cityId:2}, { name: '파주', id: 7 ,select:false,cityId:2}, { name: '김포한강', id: 8 ,select:false,cityId:2}] }
             , { name: '인천', count: 11, id: 3 ,select:false, local: [{ name: '계양', id: 9 ,select:false,cityId:3}, { name: '부평', id: 10 ,select:false,cityId:3}, { name: '인천도화', id: 11 ,select:false,cityId:3}, { name: '청라', id: 12 ,select:false,cityId:3}] }
         ];

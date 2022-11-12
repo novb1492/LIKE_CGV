@@ -6,7 +6,7 @@
             <div class="month">{{dateArr.month}}</div>
         </div>
         <div class="date_area">
-            <div v-for="(day, index) in dateArr.days" :key="day.date" class="date_box" @click="select(day,index)"
+            <div v-for="(day, index) in dateArr.days" :key="day.date" class="date_box " :class="{dow_on:day.select}" @click="select(day,index)"
                 ref="dates">
                 <span class="dow">{{day.dow}}</span>
                 <span class="day">{{day.date}}</span>
@@ -42,17 +42,17 @@ export default {
          */
         async select(day, index) {
             let reulst = await this.selectCallAction(day);
-            if (!reulst.flag) {
-                return;
-            }
-            if (this.beforeDateRefIndex === null) {
-                this.$refs.dates[index].classList.add('dow_on');
-                this.beforeDateRefIndex = index;
-                return;
-            }
-            this.$refs.dates[this.beforeDateRefIndex].classList.remove('dow_on');
-            this.$refs.dates[index].classList.add('dow_on');
-            this.beforeDateRefIndex = index;
+            // if (!reulst.flag) {
+            //     return;
+            // }
+            // if (this.beforeDateRefIndex === null) {
+            //     this.$refs.dates[index].classList.add('dow_on');
+            //     this.beforeDateRefIndex = index;
+            //     return;
+            // }
+            // this.$refs.dates[this.beforeDateRefIndex].classList.remove('dow_on');
+            // this.$refs.dates[index].classList.add('dow_on');
+            // this.beforeDateRefIndex = index;
 
         },
         /**

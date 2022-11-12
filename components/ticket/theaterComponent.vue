@@ -7,7 +7,7 @@
                 </span>
             </div>
             <div class="city_in">
-                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id,index)" ref="incitys">
+                <span v-for="(location,index) in locationArr" :key="location.id" class="city_in_t" @click="selectLo(location.id,index)"  :class="{city_in_on:location.select}" ref="incitys">
                     {{location.name}}
                 </span>
             </div>
@@ -67,17 +67,17 @@ export default {
          */
         async selectLo(locationId, index) {
             let reulst= await this.callSelectAction(locationId);
-            if(!reulst.flag){
-                return;
-            }
-            if (this.clickIndex === null) {
-                this.$refs.incitys[index].classList.add('city_in_on');
-                this.clickIndex = index;
-                return;
-            }
-            this.$refs.incitys[this.clickIndex].classList.remove('city_in_on');
-            this.$refs.incitys[index].classList.add('city_in_on');
-            this.clickIndex = index;
+            // if(!reulst.flag){
+            //     return;
+            // }
+            // if (this.clickIndex === null) {
+            //     this.$refs.incitys[index].classList.add('city_in_on');
+            //     this.clickIndex = index;
+            //     return;
+            // }
+            // this.$refs.incitys[this.clickIndex].classList.remove('city_in_on');
+            // this.$refs.incitys[index].classList.add('city_in_on');
+            // this.clickIndex = index;
         },
         /**
          * 조회 action호출

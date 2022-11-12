@@ -6,7 +6,7 @@
         </div>
         <hr class="m_sort_hr">
         <div class="ticket_m_n_area" v-if="num===1">
-            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" @click="clickMove(index,move.id)"
+            <div v-for="(move,index) in moveArr" :key="move.id" class="ticket_m_n" :class="{ticket_m_n_on:move.select}" @click="clickMove(index,move.id)"
                 :id="move.id" ref="moves">
                 <button>{{move.age}}</button>
                 <span class="move_n">{{move.name}}</span>
@@ -45,17 +45,17 @@ export default {
          */
         async clickMove(index, moveId) {
             let reulst = await this.callSelectAction(moveId);
-            if (!reulst.flag) {
-                return;
-            }
-            if (this.clickIndex === null) {
-                this.$refs.moves[index].classList.add('ticket_m_n_on');
-                this.clickIndex = index;
-                return;
-            }
-            this.$refs.moves[this.clickIndex].classList.remove('ticket_m_n_on');
-            this.$refs.moves[index].classList.add('ticket_m_n_on');
-            this.clickIndex = index;
+            // if (!reulst.flag) {
+            //     return;
+            // }
+            // if (this.clickIndex === null) {
+            //     this.$refs.moves[index].classList.add('ticket_m_n_on');
+            //     this.clickIndex = index;
+            //     return;
+            // }
+            // this.$refs.moves[this.clickIndex].classList.remove('ticket_m_n_on');
+            // this.$refs.moves[index].classList.add('ticket_m_n_on');
+            // this.clickIndex = index;
         },
         /**
          * 조회 action 호출
