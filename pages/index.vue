@@ -1,5 +1,4 @@
 <template>
-  tt
     <Tutorial/>
 </template>
 
